@@ -1,6 +1,6 @@
 {
   "name": "@tyolab/next-mdx-kit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shared MDX rendering kit for TYO Next.js pages-router sites.",
   "type": "module",
   "license": "MIT",
@@ -10,6 +10,8 @@
   },
   "exports": {
     ".": "./src/index.js",
+    "./components": "./src/components/index.js",
+    "./render": "./src/render/index.js",
     "./charts": "./src/charts/index.js",
     "./marketing": "./src/marketing/index.js",
     "./marketing.css": "./src/marketing.css",

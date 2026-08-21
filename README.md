@@ -36,7 +36,9 @@ Peer deps your app already has: `next`, `react`, `react-dom`, `gray-matter`, `ne
 
 | Import | Contains |
 | --- | --- |
-| `@tyolab/next-mdx-kit` | content loader (`loadMdx`, `listSlugs`, docs helpers, `getPosts`/`getPostById`/`buildPost`), render plumbing (`rehypeSections`, `rehypePreRaw`, `createComponentMap`), base components (`Prose`, `Callout`, `StatGrid`, `Stat`, `SectionHeading`, `Figure`, `Pre`, `SectionDepthProvider`) + `baseComponents` map |
+| `@tyolab/next-mdx-kit` | everything, incl. the **content loaders** (`loadMdx`, docs helpers, `buildPost`) — these use `node:fs`, so import from here **only in server code** (`getStaticProps`/`getServerSideProps`). For client/component code use the subpaths below. |
+| `@tyolab/next-mdx-kit/components` | base components (`Prose`, `Callout`, `StatGrid`, `Stat`, `SectionHeading`, `Figure`, `Pre`, `SectionDepthProvider`, `SectionDepthContext`) + `baseComponents` — client-safe |
+| `@tyolab/next-mdx-kit/render` | `createComponentMap`, `rehypeSections`, `rehypePreRaw` — client-safe |
 | `@tyolab/next-mdx-kit/charts` | `BarChart`, `StackedBar`, `Donut`, `DataTable`, `CardGrid`, `ArticleCard`, `Figure` |
 | `@tyolab/next-mdx-kit/marketing` | landing/marketing kit — `Hero`, `UseCaseHero`, `FeatureGrid`, `Feature`, `Steps`, `FAQ`, `CompareTable`, `CompareRow`, `CTASection`, `TrustBar`, `Changelog`, `ContactSection`, … + `marketingComponents` map |
 | `@tyolab/next-mdx-kit/marketing.css` | companion stylesheet for the marketing kit (import once; tokenized, override via CSS vars) |
