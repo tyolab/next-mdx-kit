@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #2563eb;
+  --color-muted:   #64748b;
+  --color-border:  #e2e8f0;
+  --color-bg:      #ffffff;
+  --color-surface: #f8fafc;
+  --color-text:    #0f172a;
+  --color-code-bg: #0f172a;
+  --color-accent:  #7c3aed;
+  --nmk-chart-ai:    #2563eb;
+  --nmk-chart-chat:  #f59e0b;
+  --nmk-chart-human: #14b8a6;
+  --nmk-chart-none:  #e2e8f0;
+}
