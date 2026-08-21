@@ -1,11 +1,5 @@
 import { useContext } from 'react';
-// NOTE: imported with explicit '.js' extension (rather than bare 'next/link')
-// because the installed `next` (16.3.1) package.json has no "exports" map,
-// so Node's strict ESM resolver can't resolve the extensionless subpath when
-// this file is loaded directly by `node` (as in this repo's test suite).
-// Next.js's own webpack/Turbopack resolver — used in real consuming apps —
-// resolves this file either way, so this is safe for both contexts.
-import Link from 'next/link.js';
+import Link from 'next/link';
 import { SectionDepthContext } from '../components/context.js';
 
 export function Button({ href, variant = 'primary', children }) {
