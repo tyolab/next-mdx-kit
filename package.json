@@ -1,0 +1,47 @@
+{
+  "name": "@tyolab/next-mdx-kit",
+  "version": "0.1.0",
+  "description": "Shared MDX rendering kit for TYO Next.js pages-router sites.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tyolab/next-mdx-kit.git"
+  },
+  "exports": {
+    ".": "./src/index.js",
+    "./charts": "./src/charts/index.js",
+    "./track": "./src/track.js",
+    "./tokens.css": "./src/tokens.css"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@tyolab/next-mdx-i18n": "github:tyolab/next-mdx-i18n#v0.1.0",
+    "remark-gfm": ">=3",
+    "unist-util-visit": ">=4"
+  },
+  "peerDependencies": {
+    "gray-matter": ">=4",
+    "next": ">=13",
+    "next-mdx-remote": ">=4",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "keywords": [
+    "nextjs",
+    "mdx",
+    "components",
+    "charts",
+    "analytics"
+  ],
+  "devDependencies": {
+    "gray-matter": "^4",
+    "next-mdx-remote": "^4",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
