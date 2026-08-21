@@ -11,6 +11,8 @@
   "exports": {
     ".": "./src/index.js",
     "./charts": "./src/charts/index.js",
+    "./marketing": "./src/marketing/index.js",
+    "./marketing.css": "./src/marketing.css",
     "./track": "./src/track.js",
     "./tokens.css": "./src/tokens.css"
   },
@@ -43,7 +45,8 @@
     "gray-matter": "^4",
     "next-mdx-remote": "^4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sass": "^1.103.1"
   },
   "scripts": {
     "test": "for f in test/*.test.mjs; do node --import ./test/register-jsx.mjs \"$f\" || exit 1; done"
