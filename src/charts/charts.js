@@ -1,14 +1,12 @@
 /**
  * Dependency-free, SSR-safe data-viz components for MDX articles.
- * Pure CSS/SVG (no chart lib) so they render in Next static export.
- * Registered in components/mdx/components.js and used directly in .mdx bodies.
+ * Pure CSS/SVG (no chart lib) so they render under Next static/SSG.
+ * Register via createComponentMap and use directly in .mdx bodies:
  *
- *   <StatGrid><Stat value="28%" label="Everyday brands with likely-AI chat" /></StatGrid>
  *   <BarChart data={[{label:'Banking', value:28}]} unit="%" />
  *   <StackedBar rows={[{label:'Banking', values:{ai:11, chat:12, none:15}}]} segments={SEG} />
- *   <Donut data={[{label:'AI', value:73, color:'#2563eb'}]} />
- *   <DataTable columns={[...]} rows={[...]} />
- *   <Callout type="note" title="Floor, not truth">…</Callout>
+ *   <Donut data={[{label:'AI', value:73, color:'#2563eb'}]} unitLabel="items" />
+ *   <DataTable columns={['A','B']} rows={[['x','y']]} />
  */
 import React from 'react';
 
@@ -22,8 +20,8 @@ const SERIES = ['#2563eb', '#7c3aed', '#0ea5e9', '#f59e0b', '#14b8a6', '#ef4444'
   '#10b981', '#6366f1', '#f43f5e', '#eab308'];
 
 const card = {
-  border: '1px solid #e9eef5', borderRadius: 14, padding: '20px 22px',
-  background: '#fff', margin: '26px 0', boxShadow: '0 1px 3px rgba(15,23,42,.04)',
+  border: '1px solid var(--color-border, #e9eef5)', borderRadius: 14, padding: '20px 22px',
+  background: 'var(--color-bg, #fff)', margin: '26px 0', boxShadow: '0 1px 3px rgba(15,23,42,.04)',
 };
 
 // NOTE: not exported — the canonical Figure lives in src/components/primitives.js
@@ -107,7 +105,7 @@ function Legend({ items }) {
   );
 }
 
-export function Donut({ data = [], size = 190, thickness = 30, title, caption, source, centerLabel }) {
+export function Donut({ data = [], size = 190, thickness = 30, title, caption, source, centerLabel, unitLabel = '' }) {
   const total = data.reduce((s, d) => s + d.value, 0) || 1;
   const r = (size - thickness) / 2;
   const c = 2 * Math.PI * r;
@@ -128,7 +126,7 @@ export function Donut({ data = [], size = 190, thickness = 30, title, caption, s
           ))}
         </g>
         <text x="50%" y="47%" textAnchor="middle" style={{ fontSize: 26, fontWeight: 800, fill: PALETTE.ink }}>{centerLabel ?? total}</text>
-        <text x="50%" y="59%" textAnchor="middle" style={{ fontSize: 12, fill: PALETTE.muted }}>brands</text>
+        {unitLabel && <text x="50%" y="59%" textAnchor="middle" style={{ fontSize: 12, fill: PALETTE.muted }}>{unitLabel}</text>}
       </svg>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {segs.map((s, i) => (
