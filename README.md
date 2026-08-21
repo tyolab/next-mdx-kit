@@ -38,6 +38,8 @@ Peer deps your app already has: `next`, `react`, `react-dom`, `gray-matter`, `ne
 | --- | --- |
 | `@tyolab/next-mdx-kit` | content loader (`loadMdx`, `listSlugs`, docs helpers, `getPosts`/`getPostById`/`buildPost`), render plumbing (`rehypeSections`, `rehypePreRaw`, `createComponentMap`), base components (`Prose`, `Callout`, `StatGrid`, `Stat`, `SectionHeading`, `Figure`, `Pre`, `SectionDepthProvider`) + `baseComponents` map |
 | `@tyolab/next-mdx-kit/charts` | `BarChart`, `StackedBar`, `Donut`, `DataTable`, `CardGrid`, `ArticleCard`, `Figure` |
+| `@tyolab/next-mdx-kit/marketing` | landing/marketing kit — `Hero`, `UseCaseHero`, `FeatureGrid`, `Feature`, `Steps`, `FAQ`, `CompareTable`, `CompareRow`, `CTASection`, `TrustBar`, `Changelog`, `ContactSection`, … + `marketingComponents` map |
+| `@tyolab/next-mdx-kit/marketing.css` | companion stylesheet for the marketing kit (import once; tokenized, override via CSS vars) |
 | `@tyolab/next-mdx-kit/track` | `track` — cookieless page-view beacon (override endpoint via `NEXT_PUBLIC_TRACK_ENDPOINT`) |
 | `@tyolab/next-mdx-kit/tokens.css` | default CSS custom properties (import once; override any var) |
 
@@ -71,6 +73,20 @@ export async function getStaticProps({ params, locale }) {
 `createComponentMap(base, overrides)` merges your app components over the kit's base
 map (app keys win), so you can add or replace any component.
 
+### Marketing pages
+
+```jsx
+import '@tyolab/next-mdx-kit/marketing.css';        // companion stylesheet (once)
+import { baseComponents, createComponentMap } from '@tyolab/next-mdx-kit';
+import { marketingComponents } from '@tyolab/next-mdx-kit/marketing';
+
+const components = createComponentMap(baseComponents, { ...marketingComponents, ...appComponents });
+```
+
+`ContactSection` takes a `channels` prop to override the default contact list.
+Product-specific components (e.g. a pricing table, a "for business" bridge) intentionally
+stay in your app — add them through the `overrides` map.
+
 ## Theming
 
 Components are self-contained: every colour reads a CSS custom property with a hard-coded
@@ -102,10 +118,11 @@ File-based blogs use `getPosts` / `getPostById`; CMS-sourced bodies use `buildPo
 npm test   # runs the framework-free Node suite through a JSX-aware loader
 ```
 
-## Status
+## Changelog
 
-`v0.1.0` — foundation. The reach marketing component kit (`Hero`, `FeatureGrid`,
-`UseCaseHero`, `FAQ`, `Compare*`, `CTASection`, …) lands as `@tyolab/next-mdx-kit/marketing`
-in a later minor version.
+- **v0.2.0** — adds the `@tyolab/next-mdx-kit/marketing` kit + companion `marketing.css`
+  (`Hero`, `UseCaseHero`, `FeatureGrid`, `FAQ`, `Compare*`, `CTASection`, `ContactSection`, …).
+  Product-specific components (pricing, business bridge) stay app-side.
+- **v0.1.0** — foundation: content loader, render plumbing, base primitives, charts, analytics.
 
 MIT © TYO Lab
