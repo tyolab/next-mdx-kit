@@ -1,18 +1,9 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import fs from 'fs';
+import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import { rehypePreRaw } from '../render/rehypePreRaw.js';
+import { buildPost } from './buildPost.js';
 
-/** Serialize a raw MDX string (for CMS-sourced bodies). App may add plugins via mdxOptions. */
-export async function buildPost(source, { mdxOptions = {} } = {}) {
-  return serialize(source, {
-    mdxOptions: {
-      remarkPlugins: mdxOptions.remarkPlugins || [],
-      rehypePlugins: [rehypePreRaw, ...(mdxOptions.rehypePlugins || [])],
-    },
-  });
-}
+export { buildPost };
 
 /** List posts in a directory (flat), newest first, with frontmatter (date from frontmatter or mtime). */
 export function getPosts(postsDir) {

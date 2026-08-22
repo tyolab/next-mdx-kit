@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import fs from 'fs';
 import matter from 'gray-matter';
 import { listLocalizedSlugs, resolveContentFile } from '@tyolab/next-mdx-i18n';
 import { loadMdx } from './loadMdx.js';
